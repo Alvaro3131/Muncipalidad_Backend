@@ -1,12 +1,15 @@
 import { pool } from "../database";
 export const getContribuyente = async (req, res) => {
-  pool.query("Select * from contribuyente;", function (err, result) {
-    try {
-      return res.status(200).json(result[0]);
-    } catch (error) {
-      return res.status(500).json("Error al listar contribuyente");
+  pool.query(
+    "select contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente join predio on contribuyente.codigo=predio.Contribuyente_codigo;",
+    function (err, result) {
+      try {
+        return res.status(200).json(result);
+      } catch (error) {
+        return res.status(500).json("Error al listar contribuyente");
+      }
     }
-  });
+  );
 };
 
 export const createContribuyente = async (req, res) => {
