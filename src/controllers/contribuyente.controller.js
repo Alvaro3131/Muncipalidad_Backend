@@ -5,7 +5,7 @@ export const getContribuyente = async (req, res) => {
   console.log(pass);
 
   pool.query(
-    "select contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente join predio on contribuyente.codigo=predio.Contribuyente_codigo;",
+    "select contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente left join predio on contribuyente.codigo=predio.Contribuyente_codigo;",
     function (err, result) {
       try {
         return res.status(200).json(result);
