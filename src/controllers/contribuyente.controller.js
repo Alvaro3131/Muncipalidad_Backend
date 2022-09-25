@@ -1,5 +1,9 @@
 import { pool } from "../database";
+const helpers = require("../libs/helpers");
 export const getContribuyente = async (req, res) => {
+  const pass = await helpers.encryptPassword("josue");
+  console.log(pass);
+
   pool.query(
     "select contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente join predio on contribuyente.codigo=predio.Contribuyente_codigo;",
     function (err, result) {
@@ -11,10 +15,34 @@ export const getContribuyente = async (req, res) => {
     }
   );
 };
+export const buscarContribuyente = async (req, res) => {
+  const { codigo } = req.body;
+  pool.query("call BUSCAR_CONTRIBUYENTE(?);", [codigo], function (err, result) {
+    try {
+      return res.status(200).json(result[0]);
+    } catch (error) {
+      return res.status(500).json("Error al buscar contribuyente");
+    }
+  });
+};
+export const deleteContribuyente = async (req, res) => {
+  const { codigo } = req.body;
+  pool.query(
+    "update contribuyente set estado=0 where codigo=?;",
+    [codigo],
+    function (err, result) {
+      try {
+        return res.status(200).json("Contribuyente eliminado logicamente");
+      } catch (error) {
+        return res.status(500).json("Error al buscar contribuyente");
+      }
+    }
+  );
+};
 
 export const createContribuyente = async (req, res) => {
   const {
-    P_TipoContibuyente,
+    P_InefactoPensionista,
     P_DescripcionCintribuyente,
     P_FechaResolucion,
     P_FechaAplicacion,
@@ -27,7 +55,8 @@ export const createContribuyente = async (req, res) => {
     P_Dpto,
     P_IdDistrito,
     P_IdTipoVia,
-
+    P_Numerodomicilio,
+    P_Int,
     P_NombreCompleto,
     P_Documento,
     P_TipoContribuyente,
@@ -73,9 +102,9 @@ export const createContribuyente = async (req, res) => {
   const fileName = Date.now();
   const P_Codigo = `${fileName}`;
   pool.query(
-    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
+    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
     [
-      P_TipoContibuyente,
+      P_InefactoPensionista,
       P_DescripcionCintribuyente,
       P_FechaResolucion,
       P_FechaAplicacion,
@@ -88,6 +117,8 @@ export const createContribuyente = async (req, res) => {
       P_Dpto,
       P_IdDistrito,
       P_IdTipoVia,
+      P_Numerodomicilio,
+      P_Int,
       P_Codigo,
       P_NombreCompleto,
       P_Documento,
