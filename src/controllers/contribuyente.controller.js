@@ -88,6 +88,7 @@ export const createContribuyente = async (req, res) => {
     P_Clacificacion,
     P_Frontis,
     P_Berma,
+    P_frontisAreaVerde,
     P_TipoAgrupacion,
     P_NumeroPredio,
     P_Zona,
@@ -149,6 +150,7 @@ export const createContribuyente = async (req, res) => {
       P_Clacificacion,
       P_Frontis,
       P_Berma,
+      P_frontisAreaVerde,
       P_TipoAgrupacion,
       P_NumeroPredio,
       P_Zona,
@@ -219,6 +221,7 @@ export const createContribuyenteMovil = async (req, res) => {
   const P_Clacificacion = req.body.P_Clacificacion;
   const P_Frontis = req.body.P_Frontis;
   const P_Berma = req.body.P_Berma;
+  const P_frontisAreaVerde = req.body.P_frontisAreaVerde;
 
   const P_TipoAgrupacion = req.body.P_TipoAgrupacion; //listo
   const P_NumeroPredio = req.body.P_NumeroPredio; //listo
@@ -282,6 +285,7 @@ export const createContribuyenteMovil = async (req, res) => {
       P_Clacificacion,
       P_Frontis,
       P_Berma,
+      P_frontisAreaVerde,
       P_TipoAgrupacion,
       P_NumeroPredio,
       P_Zona,
