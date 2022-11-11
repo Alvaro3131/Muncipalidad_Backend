@@ -16,6 +16,9 @@ export const login = async (req, res) => {
     "select * from trabajador where usuario=?;",
     [username],
     function (err, result) {
+      var id = result[0].idtrabajador;
+      var nombre = result[0].nombre;
+      var apellidos = result[0].apellidos;
       try {
         if (result[0].length != 0) {
           const passold = String(result[0].contraseña);
@@ -25,9 +28,14 @@ export const login = async (req, res) => {
               nombre: result[0].nombre,
               apellidos: result[0].apellidos,
             };
-            const accessToken = jwt.sign({ user }, secret, {
-              expiresIn: "100000s",
-            });
+            const accessToken = jwt.sign(
+              { user, id, nombre, apellidos },
+
+              secret,
+              {
+                expiresIn: "100000s",
+              }
+            );
             const refreshToken = jwt.sign({ user }, refreshTokenSecret);
             refreshTokens.push(refreshToken);
             return res.status(200).json({
