@@ -95,6 +95,7 @@ export const createContribuyente = async (req, res) => {
     P_Sector,
     P_Manzana,
     P_LoteCategoria,
+
     P_HabilitacionHurbana,
   } = req.body;
 
