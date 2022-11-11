@@ -30,7 +30,6 @@ export const login = async (req, res) => {
             };
             const accessToken = jwt.sign(
               { user, id, nombre, apellidos },
-
               secret,
               {
                 expiresIn: "100000s",
