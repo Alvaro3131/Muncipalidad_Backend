@@ -23,5 +23,5 @@ app.use("/api/auth/tipovia", tipoviaroutes);
 app.use("/api/auth/documento", tipodocumentoroutes);
 app.use("/api/auth/trabajador", trabajadorroutes);
 app.use("/api/auth", authRoutes);
-
+app.use("/api/auth/movil", authRoutes);
 export default app;

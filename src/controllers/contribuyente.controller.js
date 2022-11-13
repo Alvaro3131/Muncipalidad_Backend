@@ -61,6 +61,7 @@ export const createContribuyente = async (req, res) => {
     P_Documento,
     P_TipoContribuyente,
     P_IdTipoDocumento,
+    URL,
     P_TipodePropiedad,
     P_PorcentajePropiedad,
     P_FechaAdquisicion,
@@ -102,7 +103,7 @@ export const createContribuyente = async (req, res) => {
   const fileName = Date.now();
   const P_Codigo = `${fileName}`;
   pool.query(
-    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
+    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
     [
       P_InefactoPensionista,
       P_DescripcionCintribuyente,
@@ -124,6 +125,7 @@ export const createContribuyente = async (req, res) => {
       P_Documento,
       P_TipoContribuyente,
       P_IdTipoDocumento,
+      URL,
       P_TipodePropiedad,
       P_PorcentajePropiedad,
       P_FechaAdquisicion,
@@ -192,6 +194,7 @@ export const createContribuyenteMovil = async (req, res) => {
   const P_Documento = req.body.P_Documento; //listo
   const P_TipoContribuyente = req.body.P_TipoContribuyente; //listo
   const P_IdTipoDocumento = parseInt(req.body.P_IdTipoDocumento); //listo
+  const P_Url = req.body.URL;
   const P_TipodePropiedad = req.body.P_TipodePropiedad; //listo
   const P_PorcentajePropiedad = req.body.P_PorcentajePropiedad; //listo
   const P_FechaAdquisicion = req.body.P_FechaAdquisicion; //listo
@@ -237,7 +240,7 @@ export const createContribuyenteMovil = async (req, res) => {
   console.log(P_Codigo);
 
   pool.query(
-    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
+    "CALL Registro(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",
     [
       P_InefactoPensionista,
       P_DescripcionCintribuyente,
@@ -259,6 +262,7 @@ export const createContribuyenteMovil = async (req, res) => {
       P_Documento,
       P_TipoContribuyente,
       P_IdTipoDocumento,
+      P_Url,
       P_TipodePropiedad,
       P_PorcentajePropiedad,
       P_FechaAdquisicion,
