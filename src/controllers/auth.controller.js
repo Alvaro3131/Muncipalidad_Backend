@@ -69,6 +69,7 @@ export const login = async (req, res) => {
               id: result[0].idtrabajador,
               nombre: result[0].nombre,
               apellidos: result[0].apellidos,
+              admin: result[0].admin,
             };
             const accessToken = jwt.sign(
               { user, id, nombre, apellidos },
