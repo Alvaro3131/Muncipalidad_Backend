@@ -1,11 +1,8 @@
 import { pool } from "../database";
 const helpers = require("../libs/helpers");
 export const getContribuyente = async (req, res) => {
-  const pass = await helpers.encryptPassword("josue");
-  console.log(pass);
-
   pool.query(
-    "select contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente left join predio on contribuyente.codigo=predio.Contribuyente_codigo where contribuyente.estado=1;",
+    "select predio.id,contribuyente.codigo, contribuyente.Nombre_Completo_razonsocial, contribuyente.numeroDoc, predio.manzana_cat from contribuyente left join predio on contribuyente.codigo=predio.Contribuyente_codigo where contribuyente.estado=1;",
     function (err, result) {
       try {
         return res.status(200).json(result);
@@ -15,6 +12,7 @@ export const getContribuyente = async (req, res) => {
     }
   );
 };
+
 export const buscarContribuyente = async (req, res) => {
   const { codigo } = req.body;
   pool.query("call BUSCAR_CONTRIBUYENTE(?);", [codigo], function (err, result) {
